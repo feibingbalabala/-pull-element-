@@ -63,7 +63,7 @@ function more() {
 ```
 这样就可以实现上拉加载更多的效果了。
 ## 原理及思路
-利用touchmove观察手指移动的距离，同时复制给 **translate** 对应的坐标，来实现需要拖拽元素的位移。
+利用touchmove观察手指移动的距离，同时赋值给 **translate** 对应的坐标，来实现需要拖拽元素的位移。
 整体效果是很流畅的，动画回弹效果体验效果也是很不错的，主要原因是因为 **pull-element** 是基于 CSS3 的 **transform** 属性（ translate 位移）它不会去触发浏览器的 repaint/reflow（如果使用定位 position 就会触发，浪费性能）， **transform** 过渡是由GPU控制，支持硬件加速，并不需要软件方面的渲染。如果在移动端写动画的时候需要尽量去避免在 **transform** 下使用 position 的移动，这样你还是会看到卡顿。（这里推荐一片文章 [如丝般顺滑：使用 CSS3 实现 60 帧的动画](http://blog.csdn.net/qq_15096707/article/details/52269725 "如丝般顺滑：使用 CSS3 实现 60 帧的动画")）
 在某些浏览器中 **transition** 的 **duration** 属性可能是不是正常的工作， **pull-element** 也做了相对应的兼容，使用用 setTimeout 计时器进行处理。<br />
 ## 感触
